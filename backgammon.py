@@ -1,8 +1,8 @@
 from dice import Dice
+from board import Board, Rock, Stack
 
 def main():
-  dice = Dice()
-  # print(dice.roll())
-  # print("hi")
+  print('ok')
 
 main()
+
