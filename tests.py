@@ -60,6 +60,14 @@ def pop():
 	print(compare('pop', None, poped_value.previous), getframeinfo(currentframe()).lineno)
 	print(compare('pop', None, poped_value.next), getframeinfo(currentframe()).lineno)
 
+	poped_value = stack.pop()
+	print(compare('pop', 'Kal', poped_value.name), getframeinfo(currentframe()).lineno)
+	print(compare('pop', None, poped_value.previous), getframeinfo(currentframe()).lineno)
+	print(compare('pop', None, poped_value.next), getframeinfo(currentframe()).lineno)
+
+	poped_value = stack.pop()
+	print(compare('pop', None, poped_value), getframeinfo(currentframe()).lineno)
+
 def find():
 	stack = Stack('1', Rock('white', 'Evan'))
 	stack.add(Rock('white', 'Artur'))
@@ -74,11 +82,43 @@ def find():
 	value = stack.find(4)
 	print(compare('find', None, value), getframeinfo(currentframe()).lineno)
 
+def shift():
+	stack = Stack('1', Rock('white', 'Brian'))
+	stack.add(Rock('white', 'Elizoveta'))
+	stack.add(Rock('white', 'D.Brian'))
+
+	shifted_value = stack.shift()
+	print(compare('shift', 'Brian', shifted_value.name), getframeinfo(currentframe()).lineno)
+	print(compare('shift', None, shifted_value.next), getframeinfo(currentframe()).lineno)
+	print(compare('shift', None, shifted_value.previous), getframeinfo(currentframe()).lineno)
+	print(compare('shift', None, stack.head.previous), getframeinfo(currentframe()).lineno)
+	
+	shifted_value = stack.shift()
+	print(compare('shift', 'Elizoveta', shifted_value.name), getframeinfo(currentframe()).lineno)
+	print(compare('shift', None, shifted_value.next), getframeinfo(currentframe()).lineno)
+	print(compare('shift', None, shifted_value.previous), getframeinfo(currentframe()).lineno)
+	print(compare('shift', None, stack.head.previous), getframeinfo(currentframe()).lineno)
+	
+	shifted_value = stack.shift()
+	print(compare('shift', 'D.Brian', shifted_value.name), getframeinfo(currentframe()).lineno)
+	print(compare('shift', None, shifted_value.next), getframeinfo(currentframe()).lineno)
+	print(compare('shift', None, shifted_value.previous), getframeinfo(currentframe()).lineno)
+	print(compare('shift', None, stack.head), getframeinfo(currentframe()).lineno)
+	
+	shifted_value = stack.shift()
+	print(compare('shift', None, shifted_value), getframeinfo(currentframe()).lineno)
+
+def create_board():
+	board = Board()
+	print(compare('create_board', 26, len(board.columns)), getframeinfo(currentframe()).lineno)
+
 def test():
 	roll_dice()
 	create_stack()
 	stack_get_last()
 	pop()
 	find()
+	shift()
+	create_board()
 
 test()
