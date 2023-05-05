@@ -110,7 +110,14 @@ def shift():
 
 def create_board():
 	board = Board()
-	print(compare('create_board', 26, len(board.columns)), getframeinfo(currentframe()).lineno)
+	print(compare('create_board', 26, len(board.stacks)), getframeinfo(currentframe()).lineno)
+
+	board.state()
+	# for i in range(0, 5):
+	# 	print(i)
+
+	# for i in reversed(range(0, 5)):
+	# 	print(i)
 
 def test():
 	roll_dice()

@@ -73,3 +73,11 @@ class Stack:
 			shifted_value = self.head
 			self.head = None
 			return shifted_value
+		
+	def rock_count(self):
+		result = 0
+		element = self.head
+		while element:
+			result += 1
+			element = element.next
+		return result

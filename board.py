@@ -3,55 +3,71 @@ from rock import Rock
 
 class Board:
 	def __init__(self):
-		self.columns = []
+		self.stacks = []
 		for i in range(0, 26):
-			if i == 1:
-				self.columns.append(Stack(i, [
-					Rock('red', 'Steave'),
-					Rock('red', 'Mark')
-				]))
-			if i == 12:
-				self.columns.append(Stack(i, [
-					Rock('red', 'Karl'),
-					Rock('red', 'Evan'),
-					Rock('red', 'Evan'),
-					Rock('red', 'Michal'),
-					Rock('red', 'Luci'),
-					Rock('red', 'Lily')
-				]))
-			if i == 17:
-				self.columns.append(Stack(i, [
-					Rock('red', 'Scara'),
-					Rock('red', 'Brian'),
-					Rock('red', 'Kal')
-				]))
-			if i == 19:
-				self.columns.append(Stack(i, [
-					Rock('red', 'Karen'),
-					Rock('red', 'M.Brian'),
-					Rock('red', 'Karles'),
-					Rock('red', 'Marie'),
-					Rock('red', 'Bot')
-				]))
-			self.columns.append(Stack(i))
+			self.stacks.append(Stack(i))
 
-		self.columns[24].add(Rock('white', '1'))
-		self.columns[24].add(Rock('white', '2'))
-		self.columns[13].add(Rock('white', '3'))
-		self.columns[13].add(Rock('white', '4'))
-		self.columns[13].add(Rock('white', '5'))
-		self.columns[13].add(Rock('white', '6'))
-		self.columns[13].add(Rock('white', '7'))
-		self.columns[8].add(Rock('white', '8'))
-		self.columns[8].add(Rock('white', '9'))
-		self.columns[8].add(Rock('white', '10'))
-		self.columns[6].add(Rock('white', '11'))
-		self.columns[6].add(Rock('white', '12'))
-		self.columns[6].add(Rock('white', '13'))
-		self.columns[6].add(Rock('white', '14'))
-		self.columns[6].add(Rock('white', '15'))
+		self.stacks[1].add(Rock('R', '1'))
+		self.stacks[1].add(Rock('R', '1'))
+
+		self.stacks[12].add(Rock('R', '1'))
+		self.stacks[12].add(Rock('R', '1'))
+		self.stacks[12].add(Rock('R', '1'))
+		self.stacks[12].add(Rock('R', '1'))
+		self.stacks[12].add(Rock('R', '1'))
+
+		self.stacks[17].add(Rock('R', '1'))
+		self.stacks[17].add(Rock('R', '1'))
+		self.stacks[17].add(Rock('R', '1'))
+
+		self.stacks[19].add(Rock('R', '1'))
+		self.stacks[19].add(Rock('R', '1'))
+		self.stacks[19].add(Rock('R', '1'))
+		self.stacks[19].add(Rock('R', '1'))
+		self.stacks[19].add(Rock('R', '1'))
+			
+		self.stacks[24].add(Rock('W', '1'))
+		self.stacks[24].add(Rock('W', '2'))
+		self.stacks[13].add(Rock('W', '3'))
+		self.stacks[13].add(Rock('W', '4'))
+		self.stacks[13].add(Rock('W', '5'))
+		self.stacks[13].add(Rock('W', '6'))
+		self.stacks[13].add(Rock('W', '7'))
+		self.stacks[8].add(Rock('W', '8'))
+		self.stacks[8].add(Rock('W', '9'))
+		self.stacks[8].add(Rock('W', '10'))
+		self.stacks[6].add(Rock('W', '11'))
+		self.stacks[6].add(Rock('W', '12'))
+		self.stacks[6].add(Rock('W', '13'))
+		self.stacks[6].add(Rock('W', '14'))
+		self.stacks[6].add(Rock('W', '15'))
 		
 
 	def find_by_i(self, index):
-		return self.columns[index]
+		return self.stacks[index]
 	
+	def state(self):
+		result = ''
+		indent = ' ' + ' ' + ' '
+		for rock_index in reversed(range(0, 5)):
+			for stack in self.stacks:
+				if (stack.name == 0 or stack.name == 25) and rock_index == 0:
+					if stack.rock_count() < 10:
+						result += str(stack.rock_count()) + indent
+					else:
+						result += str(stack.rock_count()) + ' ' + ' '
+					continue
+				if stack.find(rock_index):
+					result += stack.find(rock_index).color + indent
+				else:
+					result += '.' + indent
+
+			result += '\n'
+		
+		for stack in self.stacks:
+			if stack.name < 10:
+				result += str(stack.name) + indent
+			else:
+				result += str(stack.name) + ' ' + ' ' 
+				
+		print(result)
