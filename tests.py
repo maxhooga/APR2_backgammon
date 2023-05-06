@@ -111,11 +111,11 @@ def shift():
 def create_board():
 	board = Board()
 	print(compare('create_board', 26, len(board.stacks)), getframeinfo(currentframe()).lineno)
-	print(board.state())
+	print(board.get_state())
 	print(compare('create_board', board.move_rock(1, 2), True), getframeinfo(currentframe()).lineno)
-	# print(compare('create_board', board.find_stack_by_i(2).head.color, 'R'), getframeinfo(currentframe()).lineno)
+	print(compare('create_board', board.find_stack_by_i(2).head.color, 'R'), getframeinfo(currentframe()).lineno)
 	print(compare('create_board', board.move_rock(1, -1), None), getframeinfo(currentframe()).lineno)
-	print(board.state())
+	print(board.get_state())
 
 
 
