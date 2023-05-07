@@ -5,10 +5,15 @@ from rock import Rock
 class Board:
 	def __init__(self, start = 0, end = 26):
 		self.stacks = []
+		self.out_red = 0
+		self.out_white = 0
 		self.board_size = range(start, end)
 
 		for i in self.board_size:
 			self.stacks.append(Stack(i))
+
+		self.stacks[0].change_state('BAR')
+		self.stacks[len(self.stacks) - 1].change_state('BAR')
 
 		self.stacks[1].add(Rock('R', '1'))
 		self.stacks[1].add(Rock('R', '2', State.READY))
@@ -41,11 +46,8 @@ class Board:
 		self.stacks[6].add(Rock('W', '13'))
 		self.stacks[6].add(Rock('W', '14'))
 		self.stacks[6].add(Rock('W', '15', State.READY))
-
-	def find_stack_by_i(self, index):
-		return self.stacks[index]
 	
-	def get_state(self):
+	def get_visual(self):
 		state = ''
 		indent = ' ' + ' ' + ' '
 		for rock_index in reversed(range(0, 5)):
@@ -70,6 +72,9 @@ class Board:
 				state += str(stack.name) + ' ' + ' ' 
 				
 		return state
+
+	def find_stack_by_i(self, index):
+		return self.stacks[index]
 	
 	def move_rock(self, start, destination):
 		if start in self.board_size and destination in self.board_size:

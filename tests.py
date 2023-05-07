@@ -111,13 +111,23 @@ def shift():
 def create_board():
 	board = Board()
 	print(compare('create_board', 26, len(board.stacks)), getframeinfo(currentframe()).lineno)
-	print(board.get_state())
+	print(board.get_visual())
 	print(compare('create_board', board.move_rock(1, 2), True), getframeinfo(currentframe()).lineno)
 	print(compare('create_board', board.find_stack_by_i(2).head.color, 'R'), getframeinfo(currentframe()).lineno)
 	print(compare('create_board', board.move_rock(1, -1), None), getframeinfo(currentframe()).lineno)
-	print(board.get_state())
+	print(board.get_visual())
 
+def check_state():
+	expected_states = ['BAR', 'HAS_ELEMENTS', 'EMPTY', 'EMPTY', 'EMPTY', 'EMPTY', 'HAS_ELEMENTS', 'EMPTY', 'HAS_ELEMENTS', 'EMPTY', 'EMPTY', 'EMPTY', 'HAS_ELEMENTS', 'HAS_ELEMENTS', 'EMPTY', 'EMPTY', 'EMPTY', 'HAS_ELEMENTS', 'EMPTY', 'HAS_ELEMENTS', 'EMPTY', 'EMPTY', 'EMPTY', 'EMPTY', 'HAS_ELEMENTS', 'BAR']
+	board = Board()
+	for i, stack in enumerate(board.stacks):
+		print(compare('stack name = ' + str(stack.name), stack.state.name, expected_states[i]), getframeinfo(currentframe()).lineno)	
 
+def check_rock_count():
+	expected_counts = [0, 2, 0, 0, 0, 0, 5, 0, 3, 0, 0, 0, 5, 5, 0, 0, 0, 3, 0, 5, 0, 0, 0, 0, 2, 0]
+	board = Board()
+	for i, stack in enumerate(board.stacks):
+		print(compare('stack name = ' + str(stack.name), stack.rock_count(), expected_counts[i]), getframeinfo(currentframe()).lineno)	
 
 def test():
 	roll_dice()
@@ -127,5 +137,7 @@ def test():
 	find()
 	shift()
 	create_board()
+	check_state()
+	check_rock_count()
 
 test()

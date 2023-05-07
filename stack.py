@@ -1,4 +1,3 @@
-from rock import Rock
 from enum import Enum
 
 class State(Enum):
@@ -6,9 +5,11 @@ class State(Enum):
 	EMPTY = 2
 	HAS_ELEMENTS = 3
 	OVERFLOW = 4
+	ONE_ELEMENT = 5
+	BAR = 6
 	
 class Stack:
-	def __init__(self, name, head = None, state = State.HAS_ELEMENTS):
+	def __init__(self, name, head = None, state = State.EMPTY):
 		if isinstance(head, list):
 			self.head = head[0]
 			head.pop(0)
@@ -19,20 +20,32 @@ class Stack:
 					element.previous = previous_element
 					previous_element = element
 		else:
-			self.name = name
 			self.head = head
 
+		self.name = name
 		self.state = state
+		self.check_state()
 
 	def check_state(self):
+		if self.name == 'bar':
+			self.state = State.BAR
+			return
 		if self.head == None:
-			return self.state.EMPTY
+			self.state = State.EMPTY
+			return
 		if self.find(6):
-			return self.state.OVERFLOW
+			self.state = State.OVERFLOW
+			return
 		if self.find(5):
-			return self.state.FULL
+			self.state = State.FULL
+			return
 		
-		return self.state.HAS_ELEMENTS
+		self.state = State.HAS_ELEMENTS
+		return
+
+	def change_state(self, state_name):
+		self.state = State[state_name]
+		return self.state
 
 	def get_last(self):
 		if self.head:
@@ -67,6 +80,7 @@ class Stack:
 			self.check_state()
 			return
 		self.head = rock
+		self.check_state()
 
 	def pop(self):
 		if self.head == None:

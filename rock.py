@@ -14,3 +14,7 @@ class Rock:
 		self.previous = previous
 		self.state = state
 	
+	def change_state(self, state_name):
+		self.state = State[state_name]
+		return self.state
+	
