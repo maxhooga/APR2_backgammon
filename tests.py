@@ -120,8 +120,9 @@ def create_board():
 def check_state():
 	expected_states = ['BAR', 'HAS_ELEMENTS', 'EMPTY', 'EMPTY', 'EMPTY', 'EMPTY', 'HAS_ELEMENTS', 'EMPTY', 'HAS_ELEMENTS', 'EMPTY', 'EMPTY', 'EMPTY', 'HAS_ELEMENTS', 'HAS_ELEMENTS', 'EMPTY', 'EMPTY', 'EMPTY', 'HAS_ELEMENTS', 'EMPTY', 'HAS_ELEMENTS', 'EMPTY', 'EMPTY', 'EMPTY', 'EMPTY', 'HAS_ELEMENTS', 'BAR']
 	board = Board()
+	
 	for i, stack in enumerate(board.stacks):
-		print(compare('stack name = ' + str(stack.name), stack.state.name, expected_states[i]), getframeinfo(currentframe()).lineno)	
+		print(compare('stack name = ' + str(stack.name), stack.state.name, expected_states[i]), getframeinfo(currentframe()).lineno)
 
 def check_rock_count():
 	expected_counts = [0, 2, 0, 0, 0, 0, 5, 0, 3, 0, 0, 0, 5, 5, 0, 0, 0, 3, 0, 5, 0, 0, 0, 0, 2, 0]

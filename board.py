@@ -5,8 +5,8 @@ from rock import Rock
 class Board:
 	def __init__(self, start = 0, end = 26):
 		self.stacks = []
-		self.out_red = 0
-		self.out_white = 0
+		self.out_red = Stack('out_red')
+		self.out_white = Stack('out_white')
 		self.board_size = range(start, end)
 
 		for i in self.board_size:
@@ -75,6 +75,8 @@ class Board:
 
 	def find_stack_by_i(self, index):
 		return self.stacks[index]
+	def find_stack_by_name(self, name):
+		return self.stacks
 	
 	def move_rock(self, start, destination):
 		if start in self.board_size and destination in self.board_size:
