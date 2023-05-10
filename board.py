@@ -3,80 +3,45 @@ from rock import State
 from rock import Rock
 
 class Board:
-	def __init__(self, start = 0, end = 26):
+	def __init__(self, init_data):
 		self.stacks = []
-		self.out_red = Stack('out_red')
-		self.out_white = Stack('out_white')
-		self.board_size = range(start, end)
+		self.board_size = range(0, len(init_data["stacks"]))
+		for stack in init_data["stacks"]:
+			new_stack = Stack(stack["name"])
+			for i in range(0, stack["rock_count"]):
+				new_stack.add(Rock(stack["rock_color"], i))
 
-		for i in self.board_size:
-			self.stacks.append(Stack(i))
+			self.stacks.append(new_stack)
 
-		self.stacks[0].change_state('BAR')
-		self.stacks[len(self.stacks) - 1].change_state('BAR')
-
-		self.stacks[1].add(Rock('R', '1'))
-		self.stacks[1].add(Rock('R', '2', State.READY))
-		self.stacks[12].add(Rock('R', '3'))
-		self.stacks[12].add(Rock('R', '4'))
-		self.stacks[12].add(Rock('R', '5'))
-		self.stacks[12].add(Rock('R', '6'))
-		self.stacks[12].add(Rock('R', '7', State.READY))
-		self.stacks[17].add(Rock('R', '8'))
-		self.stacks[17].add(Rock('R', '9'))
-		self.stacks[17].add(Rock('R', '10', State.READY))
-		self.stacks[19].add(Rock('R', '11'))
-		self.stacks[19].add(Rock('R', '12'))
-		self.stacks[19].add(Rock('R', '13'))
-		self.stacks[19].add(Rock('R', '14'))
-		self.stacks[19].add(Rock('R', '15', State.READY))
-			
-		self.stacks[24].add(Rock('W', '1'))
-		self.stacks[24].add(Rock('W', '2', State.READY))
-		self.stacks[13].add(Rock('W', '3'))
-		self.stacks[13].add(Rock('W', '4'))
-		self.stacks[13].add(Rock('W', '5'))
-		self.stacks[13].add(Rock('W', '6'))
-		self.stacks[13].add(Rock('W', '7', State.READY))
-		self.stacks[8].add(Rock('W', '8'))
-		self.stacks[8].add(Rock('W', '9'))
-		self.stacks[8].add(Rock('W', '10', State.READY))
-		self.stacks[6].add(Rock('W', '11'))
-		self.stacks[6].add(Rock('W', '12'))
-		self.stacks[6].add(Rock('W', '13'))
-		self.stacks[6].add(Rock('W', '14'))
-		self.stacks[6].add(Rock('W', '15', State.READY))
-	
 	def get_visual(self):
 		state = ''
 		indent = ' ' + ' ' + ' '
 		for rock_index in reversed(range(0, 5)):
-			for stack in self.stacks:
-				if (stack.name == 0 or stack.name == 25) and rock_index == 0:
+			for i, stack in enumerate(self.stacks):
+				if (i == 0 or i == 25) and rock_index == 0:
 					if stack.rock_count() < 10:
 						state += str(stack.rock_count()) + indent
 					else:
 						state += str(stack.rock_count()) + ' ' + ' '
 					continue
+				
 				if stack.find(rock_index):
 					state += stack.find(rock_index).color + indent
 				else:
 					state += '.' + indent
 
 			state += '\n'
-		
-		for stack in self.stacks:
-			if stack.name < 10:
-				state += str(stack.name) + indent
+
+		for i, stack in enumerate(self.stacks):
+			if i < 10:
+				state += str(i) + indent
 			else:
-				state += str(stack.name) + ' ' + ' ' 
+				state += str(i) + ' ' + ' ' 
 				
 		return state
 
 	def find_stack_by_i(self, index):
 		return self.stacks[index]
-	def find_stack_by_name(self, name):
-		return self.stacks
 	
 	def move_rock(self, start, destination):
 		if start in self.board_size and destination in self.board_size:

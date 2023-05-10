@@ -10,18 +10,19 @@ class State(Enum):
 	
 class Stack:
 	def __init__(self, name, head = None, state = State.EMPTY):
-		if isinstance(head, list):
-			self.head = head[0]
-			head.pop(0)
-			if len(head) != 0:
-				previous_element = self.head
-				for element in head:
-					previous_element.next = element
-					element.previous = previous_element
-					previous_element = element
-		else:
-			self.head = head
-
+		# if isinstance(head, list):
+		# 	self.head = head[0]
+		# 	head.pop(0)
+		# 	if len(head) != 0:
+		# 		previous_element = self.head
+		# 		for element in head:
+		# 			previous_element.next = element
+		# 			element.previous = previous_element
+		# 			previous_element = element
+		# else:
+		# 	self.head = head
+		
+		self.head = head
 		self.name = name
 		self.state = state
 		self.check_state()

@@ -3,6 +3,7 @@ from board import Board
 from rock import Rock
 from stack import Stack
 from inspect import currentframe, getframeinfo
+import json
 
 def compare(message, value, value2):
 	return value == value2, message
@@ -109,7 +110,9 @@ def shift():
 	print(compare('shift', None, shifted_value), getframeinfo(currentframe()).lineno)
 
 def create_board():
-	board = Board()
+	with open("/Users/maxhoga/studing/python/project/json/init.json") as f:
+		data = json.load(f)
+	board = Board(data)
 	print(compare('create_board', 26, len(board.stacks)), getframeinfo(currentframe()).lineno)
 	print(board.get_visual())
 	print(compare('create_board', board.move_rock(1, 2), True), getframeinfo(currentframe()).lineno)
@@ -118,17 +121,21 @@ def create_board():
 	print(board.get_visual())
 
 def check_state():
+	with open("/Users/maxhoga/studing/python/project/json/init.json") as f:
+		data = json.load(f)
 	expected_states = ['BAR', 'HAS_ELEMENTS', 'EMPTY', 'EMPTY', 'EMPTY', 'EMPTY', 'HAS_ELEMENTS', 'EMPTY', 'HAS_ELEMENTS', 'EMPTY', 'EMPTY', 'EMPTY', 'HAS_ELEMENTS', 'HAS_ELEMENTS', 'EMPTY', 'EMPTY', 'EMPTY', 'HAS_ELEMENTS', 'EMPTY', 'HAS_ELEMENTS', 'EMPTY', 'EMPTY', 'EMPTY', 'EMPTY', 'HAS_ELEMENTS', 'BAR']
-	board = Board()
+	board = Board(data)
 	
 	for i, stack in enumerate(board.stacks):
 		print(compare('stack name = ' + str(stack.name), stack.state.name, expected_states[i]), getframeinfo(currentframe()).lineno)
 
 def check_rock_count():
+	with open("/Users/maxhoga/studing/python/project/json/init.json") as f:
+		data = json.load(f)
 	expected_counts = [0, 2, 0, 0, 0, 0, 5, 0, 3, 0, 0, 0, 5, 5, 0, 0, 0, 3, 0, 5, 0, 0, 0, 0, 2, 0]
-	board = Board()
+	board = Board(data)
 	for i, stack in enumerate(board.stacks):
-		print(compare('stack name = ' + str(stack.name), stack.rock_count(), expected_counts[i]), getframeinfo(currentframe()).lineno)	
+		print(compare('stack name = ' + str(stack.name), stack.rock_count(), expected_counts[i]), getframeinfo(currentframe()).lineno)
 
 def test():
 	roll_dice()
@@ -140,5 +147,9 @@ def test():
 	create_board()
 	check_state()
 	check_rock_count()
+
+	# with open("/Users/maxhoga/studing/python/project/json/init.json") as f:
+	# 	data = json.load(f)
+	# print(data['game'])
 
 test()

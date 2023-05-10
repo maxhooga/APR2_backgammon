@@ -7,7 +7,7 @@ class State(Enum):
 	CANT_MOVE = 4
 
 class Rock:
-	def __init__(self, color, name, state = State.CANT_MOVE, next = None, previous = None):
+	def __init__(self, color, name = '', state = State.CANT_MOVE, next = None, previous = None):
 		self.color = color
 		self.name = name
 		self.next = next
