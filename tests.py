@@ -2,11 +2,15 @@ from dice import Dice
 from board import Board
 from rock import Rock
 from stack import Stack
+from game import Game
 from inspect import currentframe, getframeinfo
 import json
 
 def compare(message, value, value2):
-	return value == value2, message
+	if value != value2:
+		raise Exception("values not equal", value, value2)
+	else:
+		return True, message
 
 def roll_dice():
 	dice = Dice()
@@ -137,6 +141,24 @@ def check_rock_count():
 	for i, stack in enumerate(board.stacks):
 		print(compare('stack name = ' + str(stack.name), stack.rock_count(), expected_counts[i]), getframeinfo(currentframe()).lineno)
 
+def game():
+	with open("/Users/maxhoga/studing/python/project/json/init.json") as f:
+		data = json.load(f)
+	game = Game(data)
+	game.board.move_rock(1,2)
+	print(game.board.get_visual())
+	print('empty', game.get_empty())
+	print('has one', game.get_has_one())
+	print('has elements', game.get_has_elements())
+	print('same color', game.get_same_color('R'))
+	print('full', game.get_full())
+
+	# game.board.move_rock(1, 2)
+	# print(game.board.get_visual())
+	# print(game.get_empty())
+	# print(game.get_has_one())
+	# print(game.get_has_elements())
+
 def test():
 	roll_dice()
 	create_stack()
@@ -147,6 +169,8 @@ def test():
 	create_board()
 	check_state()
 	check_rock_count()
+	game()
+
 
 	# with open("/Users/maxhoga/studing/python/project/json/init.json") as f:
 	# 	data = json.load(f)

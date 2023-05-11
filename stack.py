@@ -5,23 +5,11 @@ class State(Enum):
 	EMPTY = 2
 	HAS_ELEMENTS = 3
 	OVERFLOW = 4
-	ONE_ELEMENT = 5
+	HAS_ONE = 5
 	BAR = 6
 	
 class Stack:
-	def __init__(self, name, head = None, state = State.EMPTY):
-		# if isinstance(head, list):
-		# 	self.head = head[0]
-		# 	head.pop(0)
-		# 	if len(head) != 0:
-		# 		previous_element = self.head
-		# 		for element in head:
-		# 			previous_element.next = element
-		# 			element.previous = previous_element
-		# 			previous_element = element
-		# else:
-		# 	self.head = head
-		
+	def __init__(self, name, head = None, state = State.EMPTY):		
 		self.head = head
 		self.name = name
 		self.state = state
@@ -30,6 +18,9 @@ class Stack:
 	def check_state(self):
 		if self.name == 'bar':
 			self.state = State.BAR
+			return
+		if self.rock_count() == 1:
+			self.state = State.HAS_ONE
 			return
 		if self.head == None:
 			self.state = State.EMPTY
