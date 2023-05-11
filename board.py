@@ -16,7 +16,7 @@ class Board:
 	def get_visual(self):
 		state = ''
 		indent = ' ' + ' ' + ' '
-		for rock_index in reversed(range(0, 5)):
+		for rock_index in reversed(range(1, 6)):
 			for i, stack in enumerate(self.stacks):
 				if (i == 0 or i == 25) and rock_index == 0:
 					if stack.rock_count() < 10:

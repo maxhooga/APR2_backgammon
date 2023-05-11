@@ -54,7 +54,7 @@ class Stack:
 		if self.head:
 			value = self.head
 			flag = 0
-			while flag != index:
+			while flag != index - 1:
 
 				if value.next == None:
 					return None

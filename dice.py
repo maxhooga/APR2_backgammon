@@ -2,9 +2,11 @@ import random
 
 class Dice:
   def roll(self):
-    return random.randrange(1, 6)
+    results = []
+    results.append(random.randrange(1, 6))
+    results.append(random.randrange(1, 6))
+    if results[0] == results[1]:
+      results.append(results[0])
+      results.append(results[0])
+    return results
   
-  # def roll_multiple_dice(self, count):
-  #   result = []
-  #   for i in range(0, count):
-  #     result.appenf(self.roll)

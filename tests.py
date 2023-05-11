@@ -36,9 +36,9 @@ def create_stack():
 	stack3.add(Rock('red', 'Small'))
 	stack3.add(Rock('red', 'Fragile'))
 	print(compare('create_stack', 'Big', stack3.head.name), getframeinfo(currentframe()).lineno)
-	print(compare('create_stack', 'Small', stack3.find(1).name), getframeinfo(currentframe()).lineno)
-	print(compare('create_stack', 'Fragile', stack3.find(2).name), getframeinfo(currentframe()).lineno)
-	print(compare('create_stack', None, stack3.find(3)), getframeinfo(currentframe()).lineno)
+	print(compare('create_stack', 'Small', stack3.find(2).name), getframeinfo(currentframe()).lineno)
+	print(compare('create_stack', 'Fragile', stack3.find(3).name), getframeinfo(currentframe()).lineno)
+	print(compare('create_stack', None, stack3.find(4)), getframeinfo(currentframe()).lineno)
 
 def stack_get_last():
 	stack = Stack('1', Rock('white', 'Vasa'))
@@ -78,13 +78,13 @@ def find():
 	stack.add(Rock('white', 'Artur'))
 	stack.add(Rock('white', 'Dima'))
 
-	value = stack.find(0)
-	print(compare('find', 'Evan', value.name), getframeinfo(currentframe()).lineno)
 	value = stack.find(1)
-	print(compare('find', 'Artur', value.name), getframeinfo(currentframe()).lineno)
+	print(compare('find', 'Evan', value.name), getframeinfo(currentframe()).lineno)
 	value = stack.find(2)
+	print(compare('find', 'Artur', value.name), getframeinfo(currentframe()).lineno)
+	value = stack.find(3)
 	print(compare('find', 'Dima', value.name), getframeinfo(currentframe()).lineno)
-	value = stack.find(4)
+	value = stack.find(5)
 	print(compare('find', None, value), getframeinfo(currentframe()).lineno)
 
 def shift():
@@ -127,7 +127,7 @@ def create_board():
 def check_state():
 	with open("/Users/maxhoga/studing/python/project/json/init.json") as f:
 		data = json.load(f)
-	expected_states = ['BAR', 'HAS_ELEMENTS', 'EMPTY', 'EMPTY', 'EMPTY', 'EMPTY', 'HAS_ELEMENTS', 'EMPTY', 'HAS_ELEMENTS', 'EMPTY', 'EMPTY', 'EMPTY', 'HAS_ELEMENTS', 'HAS_ELEMENTS', 'EMPTY', 'EMPTY', 'EMPTY', 'HAS_ELEMENTS', 'EMPTY', 'HAS_ELEMENTS', 'EMPTY', 'EMPTY', 'EMPTY', 'EMPTY', 'HAS_ELEMENTS', 'BAR']
+	expected_states = ['BAR', 'HAS_ELEMENTS', 'EMPTY', 'EMPTY', 'EMPTY', 'EMPTY', 'FULL', 'EMPTY', 'HAS_ELEMENTS', 'EMPTY', 'EMPTY', 'EMPTY', 'FULL', 'FULL', 'EMPTY', 'EMPTY', 'EMPTY', 'HAS_ELEMENTS', 'EMPTY', 'FULL', 'EMPTY', 'EMPTY', 'EMPTY', 'EMPTY', 'HAS_ELEMENTS', 'BAR']
 	board = Board(data)
 	
 	for i, stack in enumerate(board.stacks):
@@ -145,19 +145,14 @@ def game():
 	with open("/Users/maxhoga/studing/python/project/json/init.json") as f:
 		data = json.load(f)
 	game = Game(data)
-	game.board.move_rock(1,2)
-	print(game.board.get_visual())
-	print('empty', game.get_empty())
-	print('has one', game.get_has_one())
-	print('has elements', game.get_has_elements())
-	print('same color', game.get_same_color('R'))
-	print('full', game.get_full())
 
-	# game.board.move_rock(1, 2)
-	# print(game.board.get_visual())
-	# print(game.get_empty())
-	# print(game.get_has_one())
-	# print(game.get_has_elements())
+	dice = Dice()
+	dice_roll = dice.roll()
+	print(game.board.get_visual())
+	print(dice_roll)
+	print('posible move', game.posible_moves('W', 9, dice_roll))
+	# print(game.get_out_of_dice_range(dice_roll, 1))
+	# print(dice.roll())
 
 def test():
 	roll_dice()
@@ -170,6 +165,7 @@ def test():
 	check_state()
 	check_rock_count()
 	game()
+
 
 
 	# with open("/Users/maxhoga/studing/python/project/json/init.json") as f:
