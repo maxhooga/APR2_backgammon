@@ -118,11 +118,9 @@ def create_board():
 		data = json.load(f)
 	board = Board(data)
 	print(compare('create_board', 26, len(board.stacks)), getframeinfo(currentframe()).lineno)
-	print(board.get_visual())
 	print(compare('create_board', board.move_rock(1, 2), True), getframeinfo(currentframe()).lineno)
 	print(compare('create_board', board.find_stack_by_i(2).head.color, 'R'), getframeinfo(currentframe()).lineno)
 	print(compare('create_board', board.move_rock(1, -1), None), getframeinfo(currentframe()).lineno)
-	print(board.get_visual())
 
 def check_state():
 	with open("/Users/maxhoga/studing/python/project/json/init.json") as f:
@@ -145,14 +143,24 @@ def game():
 	with open("/Users/maxhoga/studing/python/project/json/init.json") as f:
 		data = json.load(f)
 	game = Game(data)
+	dice_roll = [1, 3]
+	print(compare('posible moves', game.posible_moves('R', 1, dice_roll), [2, 4, 5]), getframeinfo(currentframe()).lineno)
+	print(compare('can i move there', game.can_i_move_there('R', 1, 2, dice_roll), True), getframeinfo(currentframe()).lineno)
+	print(compare('can i move there', game.can_i_move_there('R', 1, 4, dice_roll), True), getframeinfo(currentframe()).lineno)
+	print(compare('can i move there', game.can_i_move_there('R', 1, 5, dice_roll), True), getframeinfo(currentframe()).lineno)
+	print(compare('can i move there', game.can_i_move_there('R', 1, 6, dice_roll), False), getframeinfo(currentframe()).lineno)
+	print(compare('can i move there', game.can_i_move_there('R', 1, 0, dice_roll), False), getframeinfo(currentframe()).lineno)
+	print(compare('can i move there', game.can_i_move_there('R', 1, 7, dice_roll), False), getframeinfo(currentframe()).lineno)
 
-	dice = Dice()
-	dice_roll = dice.roll()
-	print(game.board.get_visual())
-	print(dice_roll)
-	print('posible move', game.posible_moves('W', 9, dice_roll))
-	# print(game.get_out_of_dice_range(dice_roll, 1))
-	# print(dice.roll())
+	print(game.posible_moves('W', 24, dice_roll))
+	print(compare('posible moves', game.posible_moves('W', 24, dice_roll), [20, 21, 23]), getframeinfo(currentframe()).lineno)
+	
+	print(compare('can i move there', game.can_i_move_there('W', 24, 20, dice_roll), True), getframeinfo(currentframe()).lineno)
+	print(compare('can i move there', game.can_i_move_there('W', 24, 21, dice_roll), True), getframeinfo(currentframe()).lineno)
+	print(compare('can i move there', game.can_i_move_there('W', 24, 23, dice_roll), True), getframeinfo(currentframe()).lineno)
+	print(compare('can i move there', game.can_i_move_there('W', 24, 19, dice_roll), False), getframeinfo(currentframe()).lineno)
+	print(compare('can i move there', game.can_i_move_there('W', 24, 25, dice_roll), False), getframeinfo(currentframe()).lineno)
+	print(compare('can i move there', game.can_i_move_there('W', 24, 15, dice_roll), False), getframeinfo(currentframe()).lineno)
 
 def test():
 	roll_dice()
@@ -165,11 +173,5 @@ def test():
 	check_state()
 	check_rock_count()
 	game()
-
-
-
-	# with open("/Users/maxhoga/studing/python/project/json/init.json") as f:
-	# 	data = json.load(f)
-	# print(data['game'])
 
 test()

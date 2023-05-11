@@ -26,7 +26,7 @@ class Game:
 		return set(results)
 	
 	def get_out_of_dice_range(self, color, dice_rolls, current_position):
-		temp_list = dice_rolls
+		temp_list = dice_rolls.copy()
 		all_posible_moves = []
 		all_dice_throws = []
 		all_dice_throws += temp_list
@@ -62,13 +62,13 @@ class Game:
 				return set()
 		return set(self.board.board_size)
 
-	# def get_same_color(self, color):
-	# 	results = []
-	# 	for i, stack in enumerate(self.board.stacks):
-	# 		if stack.head != None:
-	# 			if stack.head.color == color:
-	# 				results.append(i)
-	# 	return set(results)
+	def get_same_color(self, color):
+		results = []
+		for i, stack in enumerate(self.board.stacks):
+			if stack.head != None:
+				if stack.head.color == color:
+					results.append(i)
+		return set(results)
 
 	# def get_different_color(self, color):
 	# 	results = []
@@ -86,7 +86,6 @@ class Game:
 	# 	return set(results)
 	
 	def posible_moves(self, color, current_position, dice_rolls):
-		# , start, destination, dices,
 		positive_set = (
 			self.get_empty() |
 			self.get_has_one() |
@@ -100,4 +99,14 @@ class Game:
 
 		results = list(positive_set - negative_set)
 		 
+		return results
+	
+	def can_i_move_there(self, color, current_position, destination, dice_rolls):
+		return destination in self.posible_moves(color, current_position, dice_rolls)
+	
+	def all_posible_moves(self, color, dice_rolls):
+		results = {}
+		for current_position in list(self.get_same_color(color)):
+			results[current_position] = self.posible_moves(color, current_position, dice_rolls)
+
 		return results
