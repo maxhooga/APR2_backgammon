@@ -69,7 +69,21 @@ class Game:
 				if stack.head.color == color:
 					results.append(i)
 		return set(results)
+	
+	def get_posible_out(self, color, current_position, dice_rolls):
+		results = []
+		if color == 'R':
+			for roll in dice_rolls:
+				if current_position + roll == self.board.board_size.stop - 1:
+					results.append(self.board.board_size.stop - 1)
 
+		if color == 'W':
+			for roll in dice_rolls:
+				if current_position - roll == self.board.board_size.start:
+					results.append(self.board.board_size.start)
+
+		return set(results)
+	
 	# def get_different_color(self, color):
 	# 	results = []
 	# 	for i, stack in enumerate(self.board.stacks):
@@ -89,7 +103,9 @@ class Game:
 		positive_set = (
 			self.get_empty() |
 			self.get_has_one() |
-			self.get_has_elements_same_color(color))
+			self.get_has_elements_same_color(color) |
+			self.get_posible_out(color, current_position, dice_rolls)
+			)
 		
 		negative_set = (
 			self.get_elements_behind(color, current_position) |
