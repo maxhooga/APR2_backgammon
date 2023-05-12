@@ -114,7 +114,7 @@ class Game:
 			)
 
 		results = list(positive_set - negative_set)
-		 
+
 		return results
 	
 	def can_i_move_there(self, color, current_position, destination, dice_rolls):
@@ -126,3 +126,9 @@ class Game:
 			results[current_position] = self.posible_moves(color, current_position, dice_rolls)
 
 		return results
+	
+	def make_move(self, color, start, destination, dice_rolls):
+		if self.can_i_move_there(color, start, destination, dice_rolls):
+			return self.board.move_rock(start, destination) 
+		else:
+			return None
