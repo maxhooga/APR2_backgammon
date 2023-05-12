@@ -145,11 +145,15 @@ class Game:
 			if not self.check_first_rule(stack):
 				self.board.move_to_bar(stack.shift())
 		
-		if not self.check_second_rule():
-			if not self.board.find_stack_by_i(self.board.board_size.start).stack_monolith_color():
-				self.board.right_score.add(self.board.find_stack_by_i(self.board.board_size.start).pop())
-			if not self.board.find_stack_by_i(self.board.board_size.stop - 1).stack_monolith_color():
-				self.board.left_score.add(self.board.find_stack_by_i(self.board.board_size.stop - 1).pop())
+		left_bar = self.board.find_stack_by_i(self.board.board_size.start)
+		if left_bar.rock_count():
+			if not left_bar.stack_monolith_color() and left_bar.head.color == "W":
+				self.board.right_score.add(left_bar.pop())
+
+		right_bar = self.board.find_stack_by_i(self.board.board_size.stop - 1)
+		if right_bar.rock_count():
+			if not right_bar.stack_monolith_color() and right_bar.head.color == "R":
+				self.board.left_score.add(right_bar.pop())
 
 	def check_win_condition(self):
 		return self.board.left_score.rock_count() >= 15 or self.board.right_score.rock_count() >= 15
