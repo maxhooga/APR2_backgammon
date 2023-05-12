@@ -147,12 +147,12 @@ class Game:
 		
 		left_bar = self.board.find_stack_by_i(self.board.board_size.start)
 		if left_bar.rock_count():
-			if not left_bar.stack_monolith_color() and left_bar.head.color == "W":
+			if not left_bar.stack_monolith_color() or left_bar.head.color == "W":
 				self.board.right_score.add(left_bar.pop())
 
 		right_bar = self.board.find_stack_by_i(self.board.board_size.stop - 1)
 		if right_bar.rock_count():
-			if not right_bar.stack_monolith_color() and right_bar.head.color == "R":
+			if not right_bar.stack_monolith_color() or right_bar.head.color == "R":
 				self.board.left_score.add(right_bar.pop())
 
 	def check_win_condition(self):
