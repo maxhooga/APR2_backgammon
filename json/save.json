@@ -2,12 +2,37 @@
   "stacks": [
     {
       "name": "bar",
+      "rock_color": "R",
+      "rock_count": 1
+    },
+    {
+      "name": "standart",
+      "rock_color": "W",
+      "rock_count": 2
+    },
+    {
+      "name": "standart",
+      "rock_color": "W",
+      "rock_count": 1
+    },
+    {
+      "name": "standart",
       "rock_color": "None",
       "rock_count": 0
     },
     {
       "name": "standart",
-      "rock_color": "R",
+      "rock_color": "None",
+      "rock_count": 0
+    },
+    {
+      "name": "standart",
+      "rock_color": "None",
+      "rock_count": 0
+    },
+    {
+      "name": "standart",
+      "rock_color": "W",
       "rock_count": 2
     },
     {
@@ -17,31 +42,6 @@
     },
     {
       "name": "standart",
-      "rock_color": "None",
-      "rock_count": 0
-    },
-    {
-      "name": "standart",
-      "rock_color": "None",
-      "rock_count": 0
-    },
-    {
-      "name": "standart",
-      "rock_color": "None",
-      "rock_count": 0
-    },
-    {
-      "name": "standart",
-      "rock_color": "W",
-      "rock_count": 5
-    },
-    {
-      "name": "standart",
-      "rock_color": "None",
-      "rock_count": 0
-    },
-    {
-      "name": "standart",
       "rock_color": "W",
       "rock_count": 3
     },
@@ -52,8 +52,8 @@
     },
     {
       "name": "standart",
-      "rock_color": "None",
-      "rock_count": 0
+      "rock_color": "R",
+      "rock_count": 1
     },
     {
       "name": "standart",
@@ -98,7 +98,7 @@
     {
       "name": "standart",
       "rock_color": "R",
-      "rock_count": 5
+      "rock_count": 4
     },
     {
       "name": "standart",
@@ -112,8 +112,8 @@
     },
     {
       "name": "standart",
-      "rock_color": "None",
-      "rock_count": 0
+      "rock_color": "R",
+      "rock_count": 1
     },
     {
       "name": "standart",

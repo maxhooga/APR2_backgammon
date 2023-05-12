@@ -12,6 +12,7 @@ import json
 #5 cant move 'rock' to the 'full stack'
 #6 cant move 'rock' without 'dice roll'
 #7 who moves all 15 rocks out of board wins
+#8 if dice has same roll. roll doubles
 ######## RULES
 
 def format(title, content = ''):

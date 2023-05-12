@@ -138,7 +138,7 @@ class Game:
 		return stack.stack_monolith_color()
 
 	def check_second_rule(self):
-		return self.board.find_stack_by_i(self.board.board_size.start).stack_monolith_color() and self.board.find_stack_by_i(self.board.board_size.stop - 1).stack_monolith_color()
+		return self.board.find_stack_by_i(self.board.board_size.start).stack_monolith_color() or self.board.find_stack_by_i(self.board.board_size.stop - 1).stack_monolith_color()
 
 	def check_board(self):
 		for stack in self.board.stacks:
@@ -149,10 +149,10 @@ class Game:
 			if not self.board.find_stack_by_i(self.board.board_size.start).stack_monolith_color():
 				self.board.right_score.add(self.board.find_stack_by_i(self.board.board_size.start).pop())
 			if not self.board.find_stack_by_i(self.board.board_size.stop - 1).stack_monolith_color():
-				self.board.left_score.add(self.board.find_stack_by_i(self.board.board_size.start).pop())
+				self.board.left_score.add(self.board.find_stack_by_i(self.board.board_size.stop - 1).pop())
 
 	def check_win_condition(self):
-		return self.board.left_score >= 15 or self.board.right_score >= 15
+		return self.board.left_score.rock_count() >= 15 or self.board.right_score.rock_count() >= 15
 	
 	def get_winner(self):
 		if self.board.left_score.rock_count() >= 15:
@@ -179,5 +179,3 @@ class Game:
 		}
 		with open(path, "w") as f:
 			f.write(json.dumps(data, indent=2))
-
-#python/project/json/save.json
