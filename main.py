@@ -25,7 +25,7 @@ def comunication(question):
 	print(question)
 	return input()
 
-def cycle(player, colors, player_name, game, dice, path):
+def cycle(player, colors, player_name, game, dice):
 	os.system("clear")
 	format(f"{player_name[player]} playing as {colors[player]}", "NOW MOVE!")
 	format(f"{player_name[0]}:{player_name[1]}", f"{game.board.left_score.rock_count()}:{game.board.right_score.rock_count()}")
@@ -50,7 +50,7 @@ def cycle(player, colors, player_name, game, dice, path):
 			p.append(int(comunication("to").replace(" ", "")))
 	
 	game.check_board()
-	game.save(path)
+	game.save("json/save.json")
 
 def show_win(player_name, game):
 	format(f"CONGRATS {player_name[game.get_winner()]} WON")
@@ -92,10 +92,10 @@ def main():
 
 	while session:
 		if player == 0:
-			cycle(player, colors, player_name, game, dice, path)
+			cycle(player, colors, player_name, game, dice)
 			player = 1
 		else:
-			cycle(player, colors, player_name, game, dice, path)
+			cycle(player, colors, player_name, game, dice)
 			player = 0
 		
 		if game.check_win_condition():
