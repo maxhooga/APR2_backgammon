@@ -5,6 +5,8 @@ from rock import Rock
 class Board:
 	def __init__(self, init_data):
 		self.stacks = []
+		self.left_score = Stack("left score")
+		self.right_score = Stack("right score")
 		self.board_size = range(0, len(init_data["stacks"]))
 		for stack in init_data["stacks"]:
 			new_stack = Stack(stack["name"])

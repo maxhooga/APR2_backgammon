@@ -134,10 +134,27 @@ class Game:
 			return None
 		
 	def check_first_rule(self, stack):
-		if stack.rock_count() != 2: return False
-		return stack.head.color != stack.find(2).color
+		return stack.stack_monolith_color()
+
+	def check_second_rule(self):
+		return self.board.find_stack_by_i(self.board.board_size.start).stack_monolith_color() and self.board.find_stack_by_i(self.board.board_size.stop - 1).stack_monolith_color()
 
 	def check_board(self):
 		for stack in self.board.stacks:
-			if self.check_first_rule(stack):
+			if not self.check_first_rule(stack):
 				self.board.move_to_bar(stack.shift())
+		
+		if not self.check_second_rule():
+			if not self.board.find_stack_by_i(self.board.board_size.start).stack_monolith_color():
+				self.board.right_score.add(self.board.find_stack_by_i(self.board.board_size.start).pop())
+			if not self.board.find_stack_by_i(self.board.board_size.stop - 1).stack_monolith_color():
+				self.board.left_score.add(self.board.find_stack_by_i(self.board.board_size.start).pop())
+
+	def check_win_condition(self):
+		return self.board.left_score >= 15 or self.board.right_score >= 15
+	
+	def get_winner(self):
+		if self.board.left_score >= 15:
+			return 0
+		if self.board.right_score >= 15:
+			return 1

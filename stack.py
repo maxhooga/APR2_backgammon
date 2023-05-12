@@ -115,3 +115,16 @@ class Stack:
 			result += 1
 			element = element.next
 		return result
+	
+	def stack_monolith_color(self):
+		if self.rock_count() < 2:
+			return True
+		
+		rock = self.head
+		while rock.next:
+			temp = rock.next
+			if rock.color != temp.color:
+				return False
+			rock = temp
+		return True
+			

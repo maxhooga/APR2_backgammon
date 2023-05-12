@@ -166,6 +166,9 @@ def game():
 
 	# print(game.board.find_stack_by_i(1).head.color)
 	# print(game.check_board())
+	# game.board.move_rock(1, 8)
+	# print(game.board.get_visual())
+	# print(game.board.find_stack_by_i(8).stack_monolith_color())
 
 def test():
 	roll_dice()

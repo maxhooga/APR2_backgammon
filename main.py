@@ -36,15 +36,15 @@ def cycle(player, colors, player_name, game, dice):
 	format(f"make your move {player_name[player]}", "To make a move print index of a rock you want to move and index you want to move it to")
 	
 	p = []
-	p.append(int(comunication("from")))
-	p.append(int(comunication("to")))
+	p.append(int(comunication("from").replace(" ", "")))
+	p.append(int(comunication("to").replace(" ", "")))
 
 	while not game.make_move(colors[player], p[0], p[1], dice_rolls):
 		if not game.make_move(colors[player], p[0], p[1], dice_rolls):
 			print("Something went wrong, i cant move there. Try again")
 			p = []
-			p.append(int(comunication("from")))
-			p.append(int(comunication("to")))
+			p.append(int(comunication("from").replace(" ", "")))
+			p.append(int(comunication("to").replace(" ", "")))
 	
 	game.check_board()
 
@@ -72,9 +72,11 @@ def main():
 		else:
 			cycle(player, colors, player_name, game, dice)
 			player = 0
-
-
 		
+		if game.check_win_condition():
+			os.system("clear")
+			comunication(f"CONGRATS YOU {player_name[game.get_winner()]} WIN")
+			session = False
 
 main()
 
@@ -84,12 +86,6 @@ main()
 		# 	os.system("clear")
 		# 	print("Then let\'s play")
 			
-
-
-
-
-
-
 
 		# else:
 		# 	session = False
