@@ -1,4 +1,5 @@
 from board import Board
+import json
 
 class Game:
 	def __init__(self, init_data):
@@ -154,7 +155,29 @@ class Game:
 		return self.board.left_score >= 15 or self.board.right_score >= 15
 	
 	def get_winner(self):
-		if self.board.left_score >= 15:
+		if self.board.left_score.rock_count() >= 15:
 			return 0
-		if self.board.right_score >= 15:
+		if self.board.right_score.rock_count() >= 15:
 			return 1
+		return 0
+		
+	def save(self, path):
+		stacks = []
+		for stack in self.board.stacks:
+			rock_color = "None"
+			if stack.rock_count():
+				rock_color = stack.head.color
+			stacks.append(
+				{
+					"name": stack.name,
+					"rock_color": rock_color,
+					"rock_count": stack.rock_count()
+				}
+			)
+		data = {
+			"stacks": stacks
+		}
+		with open(path, "w") as f:
+			f.write(json.dumps(data, indent=2))
+
+#python/project/json/save.json

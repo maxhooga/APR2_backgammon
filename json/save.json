@@ -1,0 +1,134 @@
+{
+  "stacks": [
+    {
+      "name": "bar",
+      "rock_color": "None",
+      "rock_count": 0
+    },
+    {
+      "name": "standart",
+      "rock_color": "R",
+      "rock_count": 2
+    },
+    {
+      "name": "standart",
+      "rock_color": "None",
+      "rock_count": 0
+    },
+    {
+      "name": "standart",
+      "rock_color": "None",
+      "rock_count": 0
+    },
+    {
+      "name": "standart",
+      "rock_color": "None",
+      "rock_count": 0
+    },
+    {
+      "name": "standart",
+      "rock_color": "None",
+      "rock_count": 0
+    },
+    {
+      "name": "standart",
+      "rock_color": "W",
+      "rock_count": 5
+    },
+    {
+      "name": "standart",
+      "rock_color": "None",
+      "rock_count": 0
+    },
+    {
+      "name": "standart",
+      "rock_color": "W",
+      "rock_count": 3
+    },
+    {
+      "name": "standart",
+      "rock_color": "None",
+      "rock_count": 0
+    },
+    {
+      "name": "standart",
+      "rock_color": "None",
+      "rock_count": 0
+    },
+    {
+      "name": "standart",
+      "rock_color": "None",
+      "rock_count": 0
+    },
+    {
+      "name": "standart",
+      "rock_color": "R",
+      "rock_count": 5
+    },
+    {
+      "name": "standart",
+      "rock_color": "W",
+      "rock_count": 5
+    },
+    {
+      "name": "standart",
+      "rock_color": "None",
+      "rock_count": 0
+    },
+    {
+      "name": "standart",
+      "rock_color": "None",
+      "rock_count": 0
+    },
+    {
+      "name": "standart",
+      "rock_color": "None",
+      "rock_count": 0
+    },
+    {
+      "name": "standart",
+      "rock_color": "R",
+      "rock_count": 3
+    },
+    {
+      "name": "standart",
+      "rock_color": "None",
+      "rock_count": 0
+    },
+    {
+      "name": "standart",
+      "rock_color": "R",
+      "rock_count": 5
+    },
+    {
+      "name": "standart",
+      "rock_color": "None",
+      "rock_count": 0
+    },
+    {
+      "name": "standart",
+      "rock_color": "None",
+      "rock_count": 0
+    },
+    {
+      "name": "standart",
+      "rock_color": "None",
+      "rock_count": 0
+    },
+    {
+      "name": "standart",
+      "rock_color": "None",
+      "rock_count": 0
+    },
+    {
+      "name": "standart",
+      "rock_color": "W",
+      "rock_count": 2
+    },
+    {
+      "name": "bar",
+      "rock_color": "None",
+      "rock_count": 0
+    }
+  ]
+}

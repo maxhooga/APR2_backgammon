@@ -11,10 +11,11 @@ import json
 #4 cant be more then 5 rocks in stack
 #5 cant move 'rock' to the 'full stack'
 #6 cant move 'rock' without 'dice roll'
+#7 who moves all 15 rocks out of board wins
 ######## RULES
 
 def format(title, content = ''):
-	print(title)
+	print(title) 
 	print(content)
 	if content:
 		print('\n')
@@ -26,7 +27,8 @@ def comunication(question):
 def cycle(player, colors, player_name, game, dice):
 	os.system("clear")
 	format(f"{player_name[player]} playing as {colors[player]}", "NOW MOVE!")
-
+	format(f"{player_name[0]}:{player_name[1]}", f"{game.board.left_score.rock_count()}:{game.board.right_score.rock_count()}")
+	
 	dice_rolls = dice.roll()
 	format(f"Player {player_name[player]} rolled: ", f"{dice_rolls}")
 
@@ -47,20 +49,42 @@ def cycle(player, colors, player_name, game, dice):
 			p.append(int(comunication("to").replace(" ", "")))
 	
 	game.check_board()
+	game.save("python/project/json/save.json")
+
+def show_win(player_name, game):
+	format(f"CONGRATS {player_name[game.get_winner()]} WON")
+
+	format("STATISTICS")
+	print("score:")
+	format(f"{player_name[0]}:{player_name[1]}", f"{game.board.left_score.rock_count()}:{game.board.right_score.rock_count()}")
+	format(f"LEFT BAR = {game.board.find_stack_by_i(0).rock_count()}")
+	format(f"RIGHT BAR = {game.board.find_stack_by_i(game.board.board_size.stop - 1).rock_count()}")
+
 
 
 def main():
-	with open("/Users/maxhoga/studing/python/project/json/init.json") as f:
+	path = "python/project/json/init.json"
+
+	os.system("clear")
+	format("Do you want to start new game or continue.", "Print new or continue.")
+	p = input().lower()
+
+	if p == "continue":
+		path = "python/project/json/save.json"
+
+	with open(path) as f:
 		data = json.load(f)
+
 	colors = ['R', 'W']
 	player_name = []
 	player = 0
-
-	session = True
-	game = Game(data)
 	dice = Dice()
+	session = True
+
+	game = Game(data)
 
 	os.system("clear")
+	print("Do you want to play a game?")
 	player_name.append(comunication("First player name:"))
 	os.system("clear")
 	player_name.append(comunication("Second player name:"))
@@ -75,7 +99,7 @@ def main():
 		
 		if game.check_win_condition():
 			os.system("clear")
-			comunication(f"CONGRATS YOU {player_name[game.get_winner()]} WIN")
+			show_win(player_name, game)
 			session = False
 
 main()

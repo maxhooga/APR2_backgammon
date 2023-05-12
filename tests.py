@@ -164,11 +164,7 @@ def game():
 	print(compare('can i move there', game.can_i_move_there('W', 24, 25, dice_roll), False), getframeinfo(currentframe()).lineno)
 	print(compare('can i move there', game.can_i_move_there('W', 24, 15, dice_roll), False), getframeinfo(currentframe()).lineno)
 
-	# print(game.board.find_stack_by_i(1).head.color)
-	# print(game.check_board())
-	# game.board.move_rock(1, 8)
-	# print(game.board.get_visual())
-	# print(game.board.find_stack_by_i(8).stack_monolith_color())
+	game.save()
 
 def test():
 	roll_dice()
