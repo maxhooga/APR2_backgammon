@@ -141,10 +141,6 @@ class Game:
 		return self.board.find_stack_by_i(self.board.board_size.start).stack_monolith_color() or self.board.find_stack_by_i(self.board.board_size.stop - 1).stack_monolith_color()
 
 	def check_board(self):
-		for stack in self.board.stacks:
-			if not self.check_first_rule(stack):
-				self.board.move_to_bar(stack.shift())
-		
 		left_bar = self.board.find_stack_by_i(self.board.board_size.start)
 		if left_bar.rock_count():
 			if not left_bar.stack_monolith_color() or left_bar.head.color == "W":
@@ -155,6 +151,10 @@ class Game:
 			if not right_bar.stack_monolith_color() or right_bar.head.color == "R":
 				self.board.left_score.add(right_bar.pop())
 
+		for stack in self.board.stacks:
+			if not self.check_first_rule(stack):
+				self.board.move_to_bar(stack.shift())
+		
 	def check_win_condition(self):
 		return self.board.left_score.rock_count() >= 15 or self.board.right_score.rock_count() >= 15
 	

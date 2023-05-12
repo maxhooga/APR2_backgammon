@@ -25,7 +25,7 @@ def comunication(question):
 	print(question)
 	return input()
 
-def cycle(player, colors, player_name, game, dice):
+def cycle(player, colors, player_name, game, dice, previous_moves):
 	os.system("clear")
 	format(f"{player_name[player]} playing as {colors[player]}", "NOW MOVE!")
 	format(f"{player_name[0]}:{player_name[1]}", f"{game.board.left_score.rock_count()}:{game.board.right_score.rock_count()}")
@@ -36,7 +36,8 @@ def cycle(player, colors, player_name, game, dice):
 	format(f"All posible moves for {colors[player]}", game.all_posible_moves(colors[player], dice_rolls))
 
 	format(game.board.get_visual())
-	format(f"make your move {player_name[player]}", "To make a move print index of a rock you want to move and index you want to move it to")
+	format(f"make your move {player_name[player]}")
+	format(f"previous step: ", f"from {previous_moves[0]} to {previous_moves[1]}")
 	
 	p = []
 	p.append(int(comunication("from").replace(" ", "")))
@@ -48,6 +49,9 @@ def cycle(player, colors, player_name, game, dice):
 			p = []
 			p.append(int(comunication("from").replace(" ", "")))
 			p.append(int(comunication("to").replace(" ", "")))
+			
+	previous_moves[0] = p[0]
+	previous_moves[1] = p[1]
 	
 	game.check_board()
 	game.save("json/save.json")
@@ -79,6 +83,7 @@ def main():
 	colors = ['R', 'W']
 	player_name = []
 	player = 0
+	previous_moves = ['', '']
 	dice = Dice()
 	session = True
 
@@ -92,10 +97,10 @@ def main():
 
 	while session:
 		if player == 0:
-			cycle(player, colors, player_name, game, dice)
+			cycle(player, colors, player_name, game, dice, previous_moves)
 			player = 1
 		else:
-			cycle(player, colors, player_name, game, dice)
+			cycle(player, colors, player_name, game, dice, previous_moves)
 			player = 0
 		
 		if game.check_win_condition():
