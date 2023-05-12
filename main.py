@@ -25,7 +25,7 @@ def comunication(question):
 	print(question)
 	return input()
 
-def cycle(player, colors, player_name, game, dice):
+def cycle(player, colors, player_name, game, dice, path):
 	os.system("clear")
 	format(f"{player_name[player]} playing as {colors[player]}", "NOW MOVE!")
 	format(f"{player_name[0]}:{player_name[1]}", f"{game.board.left_score.rock_count()}:{game.board.right_score.rock_count()}")
@@ -50,7 +50,7 @@ def cycle(player, colors, player_name, game, dice):
 			p.append(int(comunication("to").replace(" ", "")))
 	
 	game.check_board()
-	game.save("python/project/json/save.json")
+	game.save(path)
 
 def show_win(player_name, game):
 	format(f"CONGRATS {player_name[game.get_winner()]} WON")
@@ -64,14 +64,14 @@ def show_win(player_name, game):
 
 
 def main():
-	path = "python/project/json/init.json"
+	path = "json/init.json"
 
 	os.system("clear")
 	format("Do you want to start new game or continue.", "Print new or continue.")
 	p = input().lower()
 
 	if p == "continue":
-		path = "python/project/json/save.json"
+		path = "json/save.json"
 
 	with open(path) as f:
 		data = json.load(f)
@@ -92,10 +92,10 @@ def main():
 
 	while session:
 		if player == 0:
-			cycle(player, colors, player_name, game, dice)
+			cycle(player, colors, player_name, game, dice, path)
 			player = 1
 		else:
-			cycle(player, colors, player_name, game, dice)
+			cycle(player, colors, player_name, game, dice, path)
 			player = 0
 		
 		if game.check_win_condition():
