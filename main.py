@@ -4,6 +4,15 @@ import os
 import time
 import json
 
+######## RULES
+#1 if 'rock' 'W/R' is under rock 'R/W' then 'W/R' go to 'bar'
+#2 if 'rock' went to 'bar' by moving. 'rock' goes to 'out stack'
+#3 if 'stack' 'has elements' only 'rock' with the same color can go there
+#4 cant be more then 5 rocks in stack
+#5 cant move 'rock' to the 'full stack'
+#6 cant move 'rock' without 'dice roll'
+######## RULES
+
 def format(title, content = ''):
 	print(title)
 	print(content)
@@ -36,6 +45,8 @@ def cycle(player, colors, player_name, game, dice):
 			p = []
 			p.append(int(comunication("from")))
 			p.append(int(comunication("to")))
+	
+	game.check_board()
 
 
 def main():

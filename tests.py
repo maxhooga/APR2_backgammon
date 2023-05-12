@@ -145,6 +145,7 @@ def game():
 	game = Game(data)
 	dice_roll = [1, 3]
 	print(game.board.get_visual())
+	
 	print(compare('posible moves', game.posible_moves('R', 1, dice_roll), [2, 4, 5]), getframeinfo(currentframe()).lineno)
 	print(compare('can i move there', game.can_i_move_there('R', 1, 2, dice_roll), True), getframeinfo(currentframe()).lineno)
 	print(compare('can i move there', game.can_i_move_there('R', 1, 4, dice_roll), True), getframeinfo(currentframe()).lineno)
@@ -162,6 +163,9 @@ def game():
 	print(compare('can i move there', game.can_i_move_there('W', 24, 19, dice_roll), False), getframeinfo(currentframe()).lineno)
 	print(compare('can i move there', game.can_i_move_there('W', 24, 25, dice_roll), False), getframeinfo(currentframe()).lineno)
 	print(compare('can i move there', game.can_i_move_there('W', 24, 15, dice_roll), False), getframeinfo(currentframe()).lineno)
+
+	# print(game.board.find_stack_by_i(1).head.color)
+	# print(game.check_board())
 
 def test():
 	roll_dice()

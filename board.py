@@ -52,4 +52,10 @@ class Board:
 			return True
 		else:
 			return None
+		
+	def move_to_bar(self, rock):
+		if rock.color == 'R':
+			self.find_stack_by_i(0).add(rock)
+		else:
+			self.find_stack_by_i(self.board_size.stop - 1).add(rock)
 

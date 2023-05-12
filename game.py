@@ -132,3 +132,12 @@ class Game:
 			return self.board.move_rock(start, destination) 
 		else:
 			return None
+		
+	def check_first_rule(self, stack):
+		if stack.rock_count() != 2: return False
+		return stack.head.color != stack.find(2).color
+
+	def check_board(self):
+		for stack in self.board.stacks:
+			if self.check_first_rule(stack):
+				self.board.move_to_bar(stack.shift())
