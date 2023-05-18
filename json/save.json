@@ -1,8 +1,47 @@
 {
+  "left_score": 0,
+  "right_score": 1,
+  "players": [
+    "bot",
+    "bot"
+  ],
+  "previous_moves": [
+    6,
+    3
+  ],
+  "rock_colors": [
+    "R",
+    "W"
+  ],
   "stacks": [
     {
       "name": "bar",
-      "rock_color": "R",
+      "rock_color": "None",
+      "rock_count": 0
+    },
+    {
+      "name": "standart",
+      "rock_color": "None",
+      "rock_count": 0
+    },
+    {
+      "name": "standart",
+      "rock_color": "None",
+      "rock_count": 0
+    },
+    {
+      "name": "standart",
+      "rock_color": "W",
+      "rock_count": 1
+    },
+    {
+      "name": "standart",
+      "rock_color": "None",
+      "rock_count": 0
+    },
+    {
+      "name": "standart",
+      "rock_color": "W",
       "rock_count": 1
     },
     {
@@ -12,92 +51,12 @@
     },
     {
       "name": "standart",
-      "rock_color": "W",
-      "rock_count": 1
-    },
-    {
-      "name": "standart",
-      "rock_color": "None",
-      "rock_count": 0
-    },
-    {
-      "name": "standart",
-      "rock_color": "None",
-      "rock_count": 0
-    },
-    {
-      "name": "standart",
-      "rock_color": "None",
-      "rock_count": 0
-    },
-    {
-      "name": "standart",
-      "rock_color": "W",
-      "rock_count": 2
-    },
-    {
-      "name": "standart",
-      "rock_color": "None",
-      "rock_count": 0
-    },
-    {
-      "name": "standart",
-      "rock_color": "W",
-      "rock_count": 3
-    },
-    {
-      "name": "standart",
-      "rock_color": "None",
-      "rock_count": 0
-    },
-    {
-      "name": "standart",
       "rock_color": "R",
       "rock_count": 1
     },
     {
       "name": "standart",
-      "rock_color": "None",
-      "rock_count": 0
-    },
-    {
-      "name": "standart",
-      "rock_color": "R",
-      "rock_count": 5
-    },
-    {
-      "name": "standart",
       "rock_color": "W",
-      "rock_count": 5
-    },
-    {
-      "name": "standart",
-      "rock_color": "None",
-      "rock_count": 0
-    },
-    {
-      "name": "standart",
-      "rock_color": "None",
-      "rock_count": 0
-    },
-    {
-      "name": "standart",
-      "rock_color": "None",
-      "rock_count": 0
-    },
-    {
-      "name": "standart",
-      "rock_color": "R",
-      "rock_count": 3
-    },
-    {
-      "name": "standart",
-      "rock_color": "None",
-      "rock_count": 0
-    },
-    {
-      "name": "standart",
-      "rock_color": "R",
       "rock_count": 4
     },
     {
@@ -112,13 +71,68 @@
     },
     {
       "name": "standart",
+      "rock_color": "None",
+      "rock_count": 0
+    },
+    {
+      "name": "standart",
       "rock_color": "R",
-      "rock_count": 1
+      "rock_count": 5
+    },
+    {
+      "name": "standart",
+      "rock_color": "W",
+      "rock_count": 4
     },
     {
       "name": "standart",
       "rock_color": "None",
       "rock_count": 0
+    },
+    {
+      "name": "standart",
+      "rock_color": "None",
+      "rock_count": 0
+    },
+    {
+      "name": "standart",
+      "rock_color": "None",
+      "rock_count": 0
+    },
+    {
+      "name": "standart",
+      "rock_color": "R",
+      "rock_count": 3
+    },
+    {
+      "name": "standart",
+      "rock_color": "None",
+      "rock_count": 0
+    },
+    {
+      "name": "standart",
+      "rock_color": "R",
+      "rock_count": 5
+    },
+    {
+      "name": "standart",
+      "rock_color": "None",
+      "rock_count": 0
+    },
+    {
+      "name": "standart",
+      "rock_color": "None",
+      "rock_count": 0
+    },
+    {
+      "name": "standart",
+      "rock_color": "None",
+      "rock_count": 0
+    },
+    {
+      "name": "standart",
+      "rock_color": "R",
+      "rock_count": 1
     },
     {
       "name": "standart",

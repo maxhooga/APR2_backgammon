@@ -127,4 +127,3 @@ class Stack:
 				return False
 			rock = temp
 		return True
-			

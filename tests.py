@@ -5,6 +5,8 @@ from stack import Stack
 from game import Game
 from inspect import currentframe, getframeinfo
 import json
+import random
+from bot import Bot
 
 def compare(message, value, value2):
 	if value != value2:
@@ -163,8 +165,11 @@ def game():
 	print(compare('can i move there', game.can_i_move_there('W', 24, 19, dice_roll), False), getframeinfo(currentframe()).lineno)
 	print(compare('can i move there', game.can_i_move_there('W', 24, 25, dice_roll), False), getframeinfo(currentframe()).lineno)
 	print(compare('can i move there', game.can_i_move_there('W', 24, 15, dice_roll), False), getframeinfo(currentframe()).lineno)
-
-	game.save()
+	
+	print(game.all_posible_moves('R', dice_roll))
+	print(random.choice(list(game.all_posible_moves('R', dice_roll))))
+	bot = Bot()
+	print(bot.pick_random(game, dice_roll))
 
 def test():
 	roll_dice()

@@ -1,4 +1,9 @@
 {
+  "right_score": 0,
+  "left_score": 0,
+  "players": [],
+  "previous_moves": [0, 0],
+  "rock_colors": ["R", "W"],
   "stacks": [
     {
       "name": "bar",

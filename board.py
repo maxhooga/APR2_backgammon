@@ -1,5 +1,4 @@
 from stack import Stack
-from rock import State
 from rock import Rock
 
 class Board:
@@ -7,6 +6,13 @@ class Board:
 		self.stacks = []
 		self.left_score = Stack("left score")
 		self.right_score = Stack("right score")
+
+		for i in range(0, init_data["left_score"]):
+			self.left_score.add(Rock(init_data["rock_colors"][0]))
+		for i in range(0, init_data["right_score"]):
+			self.right_score.add(Rock(init_data["rock_colors"][1]))
+
+		self.colors = init_data["rock_colors"]
 		self.board_size = range(0, len(init_data["stacks"]))
 		for stack in init_data["stacks"]:
 			new_stack = Stack(stack["name"])
@@ -56,7 +62,7 @@ class Board:
 			return None
 		
 	def move_to_bar(self, rock):
-		if rock.color == 'R':
+		if rock.color == self.colors[0]:
 			self.find_stack_by_i(0).add(rock)
 		else:
 			self.find_stack_by_i(self.board_size.stop - 1).add(rock)

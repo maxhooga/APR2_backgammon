@@ -4,6 +4,9 @@ import json
 class Game:
 	def __init__(self, init_data):
 		self.board = Board(init_data)
+		self.players = init_data["players"]
+		self.previous_moves = init_data["previous_moves"]
+		self.current_playing = 0
 
 	def get_empty(self):
 		results = []
@@ -36,9 +39,9 @@ class Game:
 			temp_list.pop()
 
 		for number in all_dice_throws:
-			if color == 'R':
+			if color == self.board.colors[0]:
 				all_posible_moves.append(current_position + number)
-			if color == 'W':
+			if color == self.board.colors[1]:
 				all_posible_moves.append(current_position - number)
 		
 		return set(self.board.board_size) - set(all_posible_moves)
@@ -46,11 +49,11 @@ class Game:
 	
 	def get_elements_behind(self, color, current_position):
 		results = []
-		if color == 'R':
+		if color == self.board.colors[0]:
 			for i, _ in enumerate(self.board.stacks):
 				if current_position >= i:
 					results.append(i)
-		if color == 'W':
+		if color == self.board.colors[1]:
 			for i, _ in enumerate(self.board.stacks):
 				if current_position <= i:
 					results.append(i)
@@ -73,32 +76,17 @@ class Game:
 	
 	def get_posible_out(self, color, current_position, dice_rolls):
 		results = []
-		if color == 'R':
+		if color == self.board.colors[0]:
 			for roll in dice_rolls:
 				if current_position + roll == self.board.board_size.stop - 1:
 					results.append(self.board.board_size.stop - 1)
 
-		if color == 'W':
+		if color == self.board.colors[1]:
 			for roll in dice_rolls:
 				if current_position - roll == self.board.board_size.start:
 					results.append(self.board.board_size.start)
 
 		return set(results)
-	
-	# def get_different_color(self, color):
-	# 	results = []
-	# 	for i, stack in enumerate(self.board.stacks):
-	# 		if stack.head != None:
-	# 			if stack.head.color != color:
-	# 				results.append(i)
-	# 	return set(results)
-	
-	# def get_full(self):
-	# 	results = []
-	# 	for i, stack in enumerate(self.board.stacks):
-	# 		if stack.state.name == "FULL":
-	# 			results.append(i)
-	# 	return set(results)
 	
 	def posible_moves(self, color, current_position, dice_rolls):
 		positive_set = (
@@ -143,12 +131,12 @@ class Game:
 	def check_board(self):
 		left_bar = self.board.find_stack_by_i(self.board.board_size.start)
 		if left_bar.rock_count():
-			if not left_bar.stack_monolith_color() or left_bar.head.color == "W":
+			if not left_bar.stack_monolith_color() or left_bar.head.color == self.board.colors[1]:
 				self.board.right_score.add(left_bar.pop())
 
 		right_bar = self.board.find_stack_by_i(self.board.board_size.stop - 1)
 		if right_bar.rock_count():
-			if not right_bar.stack_monolith_color() or right_bar.head.color == "R":
+			if not right_bar.stack_monolith_color() or right_bar.head.color == self.board.colors[0]:
 				self.board.left_score.add(right_bar.pop())
 
 		for stack in self.board.stacks:
@@ -178,8 +166,14 @@ class Game:
 					"rock_count": stack.rock_count()
 				}
 			)
+			
 		data = {
+			"left_score": self.board.left_score.rock_count(),
+			"right_score": self.board.right_score.rock_count(),
+			"players": self.players,
+			"previous_moves": self.previous_moves,
+			"rock_colors": [self.board.colors[0], self.board.colors[1]],
 			"stacks": stacks
 		}
 		with open(path, "w") as f:
-			f.write(json.dumps(data, indent=2))
+			f.write(json.dumps(data, indent = 2))
